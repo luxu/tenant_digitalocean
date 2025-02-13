@@ -79,6 +79,6 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/root/tenant_digitalocean/static'
+STATIC_ROOT = '/var/www/tenant_digitalocean_static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
