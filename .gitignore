@@ -3,3 +3,10 @@
 .venv
 .env
 db.sqlite3
+empresa/__pycache__/
+empresa/migrations/__pycache__/
+funcionario/__pycache__/
+funcionario/migrations/__pycache__/
+kernel/__pycache__/
+tenant/__pycache__/
+tenant/migrations/__pycache__/
