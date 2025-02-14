@@ -45,7 +45,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kernel.urls'
-# PUBLIC_SCHEMA_URLCONF = 'app.urls_public'
+PUBLIC_SCHEMA_URLCONF = 'kernel.urls_public'
 
 TEMPLATES = [
     {
