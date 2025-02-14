@@ -9,7 +9,9 @@ SECRET_KEY = config("SECRET_KEY")
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
-INSTALLED_APPS = [
+SHARED_APPS = [
+    'django_tenants',  # Necessário para Django Tenants
+    'tenant',  # Aplicativo específico para dados dos tenants
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -19,10 +21,20 @@ INSTALLED_APPS = [
     'django_extensions',
     'empresa',
     'funcionario',
-    # 'tenant',
+]
+
+TENANT_APPS = [
+    'django.contrib.auth',  # Aplicativos que só devem estar disponíveis no contexto do tenant
+    'django.contrib.contenttypes',
+    'empresa',
+]
+
+INSTALLED_APPS = SHARED_APPS + [
+    app for app in TENANT_APPS if app not in SHARED_APPS
 ]
 
 MIDDLEWARE = [
+    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -33,6 +45,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kernel.urls'
+# PUBLIC_SCHEMA_URLCONF = 'app.urls_public'
 
 TEMPLATES = [
     {
@@ -54,7 +67,8 @@ WSGI_APPLICATION = 'kernel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django_tenants.postgresql_backend',
         'NAME': config('POSTGRES_DB'),
         'USER': config('POSTGRES_USER'),
         'PASSWORD': config('POSTGRES_PASSWORD'),
@@ -87,3 +101,13 @@ STATIC_URL = 'static/'
 STATIC_ROOT = '/var/www/tenant_digitalocean_static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# TENANT
+DATABASE_ROUTERS = [
+    'django_tenants.routers.TenantSyncRouter'
+]
+
+TENANT_MODEL = "tenant.Client"
+TENANT_DOMAIN_MODEL = "tenant.Domain"
+# Para quando não tendo nenhum `tenant` mostre o localhost público
+# SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
