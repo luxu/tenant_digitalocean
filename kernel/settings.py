@@ -110,4 +110,4 @@ DATABASE_ROUTERS = [
 TENANT_MODEL = "tenant.Client"
 TENANT_DOMAIN_MODEL = "tenant.Domain"
 # Para quando não tendo nenhum `tenant` mostre o localhost público
-# SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
+SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
