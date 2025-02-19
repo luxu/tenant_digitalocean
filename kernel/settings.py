@@ -45,12 +45,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'kernel.urls'
-PUBLIC_SCHEMA_URLCONF = 'kernel.urls_public'
+# PUBLIC_SCHEMA_URLCONF = 'kernel.urls_public'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,7 +98,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/var/www/tenant_digitalocean_static'
+# STATIC_ROOT = '/var/www/tenant_digitalocean_static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
