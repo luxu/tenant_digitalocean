@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Empresas</h2>
+    <a href="{% url 'empresa_create' %}">Nova Empresa</a>
+    <hr />
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 200px; text-align: left">Nome</th>
+                <th style="width: 100px; text-align: left ">CNPJ</th>
+                <th style="width: 200px; text-align: center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empresa in empresas %}
+                <tr>
+                    <td style="width: 200px">{{ empresa.name }}</td>
+                    <td style="width: 100px">{{ empresa.cnpj }}</td>
+                    <td style="width: 200px; text-align: center">
+                        <a href="{% url 'empresa_update' empresa.id %}">Editar</a> |
+                        <a href="{% url 'empresa_delete' empresa.id %}">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

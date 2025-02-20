@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Lista de Funcionários</h2>
+    <a href="{% url 'funcionario_create' %}">Novo Funcionário</a>
+    <hr />
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 200px; text-align: left">Nome</th>
+                <th style="width: 200px; text-align: left">Cargo</th>
+                <th style="width: 200px; text-align: left">Empresa</th>
+                <th style="width: 200px; text-align: left">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for funcionario in funcionarios %}
+                <tr>
+                    <td>{{ funcionario.nome }}</td>
+                    <td>{{ funcionario.cargo }}</td>
+                    <td>{{ funcionario.empresa.name }}</td>
+                    <td>
+                        <a href="{% url 'funcionario_update' funcionario.id %}">Editar</a> |
+                        <a href="{% url 'funcionario_delete' funcionario.id %}">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

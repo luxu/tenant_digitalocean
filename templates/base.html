@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Meu Projeto Django Tenant</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="{% url 'empresa_list' %}">Empresas</a></li>
+            <li><a href="{% url 'funcionario_list' %}">Funcionários</a></li>
+            <li class="dark-mode-toggle">
+                <button id="dark-mode-button">Dark Mode</button>
+            </li>
+            <li><a href="#">Sair</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
