@@ -47,7 +47,7 @@ MIDDLEWARE = [
 LOGIN_URL = 'login'  # URL para redirecionamento quando @login_required falhar
 
 ROOT_URLCONF = 'kernel.urls'
-# PUBLIC_SCHEMA_URLCONF = 'kernel.urls_public'
+PUBLIC_SCHEMA_URLCONF = 'kernel.urls_public'
 
 TEMPLATES = [
     {
