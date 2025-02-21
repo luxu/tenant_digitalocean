@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 
@@ -5,6 +6,7 @@ from empresa.forms import EmpresaForm
 from empresa.models import Empresa
 
 
+@login_required
 def empresa_list(request):
     template_name = 'empresa/empresa_list.html'
     empresas = Empresa.objects.all()
@@ -14,6 +16,7 @@ def empresa_list(request):
     return render(request, template_name, context)
 
 
+@login_required
 def empresa_create(request):
     template_name = 'empresa/empresa_form.html'
     if request.method == 'POST':
@@ -27,7 +30,7 @@ def empresa_create(request):
     }
     return render(request, template_name, context)
 
-
+@login_required
 def empresa_update(request, pk):
     template_name = 'empresa/empresa_form.html'
     empresa = get_object_or_404(Empresa, pk=pk)
@@ -42,7 +45,7 @@ def empresa_update(request, pk):
     }
     return render(request, template_name, context)
 
-
+@login_required
 def empresa_delete(request, pk):
     template_name = 'empresa/empresa_confirm_delete.html'
     empresa = get_object_or_404(Empresa, pk=pk)

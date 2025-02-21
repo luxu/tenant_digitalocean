@@ -14,7 +14,13 @@
             <li class="dark-mode-toggle">
                 <button id="dark-mode-button">Dark Mode</button>
             </li>
-            <li><a href="#">Sair</a></li>
+            <li>{% if user.is_authenticated %}
+                    Bem-vindo, {{ request.user.username }}!
+                    <a href="{% url 'logout' %}">Sair</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Entrar</a>
+                {% endif %}
+            </li>
         </ul>
     </nav>
     <main>
